@@ -9,6 +9,9 @@ const categorySchema = new Schema({
     },
     codes: {
         type: [String]
+    },
+    shops: {
+        type: [String]
     }
 })
 
