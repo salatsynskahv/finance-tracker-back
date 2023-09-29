@@ -1,6 +1,7 @@
 const express = require("express")
 const mongoose = require("mongoose")
 require("dotenv").config();
+const path = require('path');
 
 const app = express();
 const cors = require('cors');
@@ -27,9 +28,9 @@ const {response} = require("express");
 
 
 
-app.get('/', async (req, res) => {
-    res.send('hello');
-});
+app.get('/', (req, res) => {
+    res.sendFile('index.html', {root: path.join(__dirname, 'public')});
+})
 
 
 app.get('/allCategories', async (req, res) => {
@@ -156,6 +157,10 @@ app.patch('/editUserCategoryShop', async (req, res) => {
     })
 });
 
+app.use(express.static('public'));
+
 app.listen(port, () => {
     console.log(`App listening at localhost: ${port}`)
-})
+});
+
+module.exports = app;
